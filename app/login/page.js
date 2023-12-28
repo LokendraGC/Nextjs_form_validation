@@ -4,6 +4,8 @@ import { NextResponse } from 'next/server'
 import React, {useState } from 'react'
 import axios from 'axios'
 import {useRouter} from "next/navigation";
+ import { toast } from "react-toastify";
+
 
 const page = () => {
   const router = useRouter();
@@ -26,9 +28,11 @@ const page = () => {
  
         if (response.status == 200 && response.data.success) {
           router.push("/dashboard");
+          toast.success("Logged in successfully") 
+          
           console.log("On the way to dashboard");
         }else{
-          console.log("Login failed",response.data);
+          console.log("Invalid username and password",response.data);
         }
 
       }catch(err){
